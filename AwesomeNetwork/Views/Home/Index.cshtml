@@ -1,0 +1,36 @@
+﻿@using Microsoft.AspNetCore.Identity;
+@using AwesomeNetwork.Models.Users;
+@inject SignInManager<User> SignInManager
+@inject UserManager<User> UserManager;
+
+@model AwesomeNetwork.ViewModels.Account.MainViewModel;
+
+@{
+    ViewData["Title"] = "Home Page";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@if (SignInManager.IsSignedIn(User))
+{
+    <div>Hello @User.Identity!</div>
+}
+else
+{
+
+
+    <div class="row bg-light">
+        <div class="side">
+            <div class="center">
+                Добро пожаловать в самую лучшую социальную сеть! Мы всегда рады новым пользователям:)
+            </div>
+            <img class="main-img" src="https://im0-tub-ru.yandex.net/i?id=43d9a8a2c9fd7ecc4d07f2cb8a153363&n=13" />
+        </div>
+
+
+        <div class="main">
+            <partial name="Login" model="@Model.LoginView" />
+            <partial name="Register" model="@Model.RegisterView"/>
+        </div>
+
+    </div>
+
+}
